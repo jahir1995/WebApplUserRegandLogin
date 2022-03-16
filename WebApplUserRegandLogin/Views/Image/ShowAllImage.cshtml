@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebApplUserRegandLogin.ViewModel.TestImgDB>
+
+@{
+    ViewBag.Title = "Show All Image";
+}
+
+<div class="image-tabs">
+    <div>
+        @Html.ActionLink("Upload Image", "AddImage")
+    </div>
+    <div class="active-tab">
+        @Html.ActionLink("Gallary", "ShowAllImage")
+    </div>
+</div>
+
+<div class="image-gallary-table">
+    <h2>Gallery</h2>
+
+
+    <table class="table table-hover table-responsive">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImagePath)
+            </th>
+            <th></th>
+        </tr>
+
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ImageName)
+                    </td>
+                    <td>
+                        <img src="@Url.Content(item.ImagePath)" />
+                    </td>
+
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+<style>
+    body {
+        background: #ededeb;
+        margin-top: 20px;
+    }
+
+    .image-tabs {
+        display: flex;
+    }
+
+    .image-tabs a {
+            background: #ccc;
+            padding: 10px 30px;
+            margin-right: 2px;
+            border-radius: 8px 8px 0 0;
+            font-size: 16px;
+    }
+
+        .image-tabs .active-tab a, .image-tabs a:hover {
+            background: #0460db;
+            text-decoration: none;
+            color: #fff;
+        }       
+
+    .image-gallary-table {
+        background: #FFF;
+        margin: 6px 0 0;
+        padding:20px;   
+        border: 1px solid #ccc;
+        box-shadow: 0 0 20px rgb(48 48 48 / 20%);
+    }
+
+    .form-horizontal h4 {
+        margin-top: 30px;
+    }
+    .image-gallary-table tr img {
+        width: 200px;
+    }
+</style>
